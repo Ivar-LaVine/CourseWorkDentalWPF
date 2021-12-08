@@ -1,0 +1,547 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="dental_dbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="day">
+          <Key>
+            <PropertyRef Name="day_id" />
+          </Key>
+          <Property Name="day_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="doctor">
+          <Key>
+            <PropertyRef Name="doc_id" />
+          </Key>
+          <Property Name="doc_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="surname" Type="varchar" MaxLength="50" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="patronymic" Type="varchar" MaxLength="50" />
+          <Property Name="dob" Type="date" />
+          <Property Name="phone" Type="nvarchar" MaxLength="20" />
+          <Property Name="mail" Type="nvarchar" MaxLength="50" />
+          <Property Name="reg_date" Type="date" />
+          <Property Name="pos_id" Type="int" />
+        </EntityType>
+        <EntityType Name="patient">
+          <Key>
+            <PropertyRef Name="pat_id" />
+          </Key>
+          <Property Name="pat_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="surname" Type="nvarchar" MaxLength="50" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="patronymic" Type="nvarchar" MaxLength="50" />
+          <Property Name="dob" Type="date" />
+          <Property Name="snills" Type="nvarchar" MaxLength="50" />
+          <Property Name="oms" Type="nvarchar" MaxLength="50" />
+          <Property Name="passport" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="position">
+          <Key>
+            <PropertyRef Name="pos_id" />
+          </Key>
+          <Property Name="pos_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="service">
+          <Key>
+            <PropertyRef Name="ser_id" />
+          </Key>
+          <Property Name="ser_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title" Type="nvarchar" MaxLength="50" />
+          <Property Name="price" Type="money" />
+          <Property Name="description" Type="nvarchar" MaxLength="500" />
+          <Property Name="time" Type="time" Precision="7" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="talon">
+          <Key>
+            <PropertyRef Name="tal_id" />
+          </Key>
+          <Property Name="tal_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="pat_id" Type="int" />
+          <Property Name="ser_id" Type="int" />
+          <Property Name="tal_date" Type="date" />
+          <Property Name="tal_time" Type="time" Precision="7" />
+          <Property Name="doc_id" Type="int" />
+        </EntityType>
+        <EntityType Name="timetable">
+          <Key>
+            <PropertyRef Name="tim_id" />
+          </Key>
+          <Property Name="tim_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="day_id" Type="int" />
+          <Property Name="doc_id" Type="int" />
+          <Property Name="beg_time" Type="time" Precision="7" />
+          <Property Name="end_time" Type="time" Precision="7" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="login" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_doctor_position">
+          <End Role="position" Type="Self.position" Multiplicity="0..1" />
+          <End Role="doctor" Type="Self.doctor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="position">
+              <PropertyRef Name="pos_id" />
+            </Principal>
+            <Dependent Role="doctor">
+              <PropertyRef Name="pos_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_talon_doctor">
+          <End Role="doctor" Type="Self.doctor" Multiplicity="0..1" />
+          <End Role="talon" Type="Self.talon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="doctor">
+              <PropertyRef Name="doc_id" />
+            </Principal>
+            <Dependent Role="talon">
+              <PropertyRef Name="doc_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_talon_patient">
+          <End Role="patient" Type="Self.patient" Multiplicity="0..1" />
+          <End Role="talon" Type="Self.talon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="patient">
+              <PropertyRef Name="pat_id" />
+            </Principal>
+            <Dependent Role="talon">
+              <PropertyRef Name="pat_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_talon_service">
+          <End Role="service" Type="Self.service" Multiplicity="0..1" />
+          <End Role="talon" Type="Self.talon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="service">
+              <PropertyRef Name="ser_id" />
+            </Principal>
+            <Dependent Role="talon">
+              <PropertyRef Name="ser_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_timetable_day">
+          <End Role="day" Type="Self.day" Multiplicity="0..1" />
+          <End Role="timetable" Type="Self.timetable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="day">
+              <PropertyRef Name="day_id" />
+            </Principal>
+            <Dependent Role="timetable">
+              <PropertyRef Name="day_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_timetable_doctor">
+          <End Role="doctor" Type="Self.doctor" Multiplicity="0..1" />
+          <End Role="timetable" Type="Self.timetable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="doctor">
+              <PropertyRef Name="doc_id" />
+            </Principal>
+            <Dependent Role="timetable">
+              <PropertyRef Name="doc_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="dental_dbModelStoreContainer">
+          <EntitySet Name="day" EntityType="Self.day" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="doctor" EntityType="Self.doctor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="patient" EntityType="Self.patient" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="position" EntityType="Self.position" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="service" EntityType="Self.service" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="talon" EntityType="Self.talon" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="timetable" EntityType="Self.timetable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="user" EntityType="Self.user" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_doctor_position" Association="Self.FK_doctor_position">
+            <End Role="position" EntitySet="position" />
+            <End Role="doctor" EntitySet="doctor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_talon_doctor" Association="Self.FK_talon_doctor">
+            <End Role="doctor" EntitySet="doctor" />
+            <End Role="talon" EntitySet="talon" />
+          </AssociationSet>
+          <AssociationSet Name="FK_talon_patient" Association="Self.FK_talon_patient">
+            <End Role="patient" EntitySet="patient" />
+            <End Role="talon" EntitySet="talon" />
+          </AssociationSet>
+          <AssociationSet Name="FK_talon_service" Association="Self.FK_talon_service">
+            <End Role="service" EntitySet="service" />
+            <End Role="talon" EntitySet="talon" />
+          </AssociationSet>
+          <AssociationSet Name="FK_timetable_day" Association="Self.FK_timetable_day">
+            <End Role="day" EntitySet="day" />
+            <End Role="timetable" EntitySet="timetable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_timetable_doctor" Association="Self.FK_timetable_doctor">
+            <End Role="doctor" EntitySet="doctor" />
+            <End Role="timetable" EntitySet="timetable" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="dental_dbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="day">
+          <Key>
+            <PropertyRef Name="day_id" />
+          </Key>
+          <Property Name="day_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="timetable" Relationship="Self.FK_timetable_day" FromRole="day" ToRole="timetable" />
+        </EntityType>
+        <EntityType Name="doctor">
+          <Key>
+            <PropertyRef Name="doc_id" />
+          </Key>
+          <Property Name="doc_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="surname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="dob" Type="DateTime" Precision="0" />
+          <Property Name="phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="mail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="reg_date" Type="DateTime" Precision="0" />
+          <Property Name="pos_id" Type="Int32" />
+          <NavigationProperty Name="position" Relationship="Self.FK_doctor_position" FromRole="doctor" ToRole="position" />
+          <NavigationProperty Name="talon" Relationship="Self.FK_talon_doctor" FromRole="doctor" ToRole="talon" />
+          <NavigationProperty Name="timetable" Relationship="Self.FK_timetable_doctor" FromRole="doctor" ToRole="timetable" />
+        </EntityType>
+        <EntityType Name="patient">
+          <Key>
+            <PropertyRef Name="pat_id" />
+          </Key>
+          <Property Name="pat_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="dob" Type="DateTime" Precision="0" />
+          <Property Name="snills" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="oms" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="passport" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="talon" Relationship="Self.FK_talon_patient" FromRole="patient" ToRole="talon" />
+        </EntityType>
+        <EntityType Name="position">
+          <Key>
+            <PropertyRef Name="pos_id" />
+          </Key>
+          <Property Name="pos_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="doctor" Relationship="Self.FK_doctor_position" FromRole="position" ToRole="doctor" />
+        </EntityType>
+        <EntityType Name="service">
+          <Key>
+            <PropertyRef Name="ser_id" />
+          </Key>
+          <Property Name="ser_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="price" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="time" Type="Time" Precision="7" />
+          <NavigationProperty Name="talon" Relationship="Self.FK_talon_service" FromRole="service" ToRole="talon" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="talon">
+          <Key>
+            <PropertyRef Name="tal_id" />
+          </Key>
+          <Property Name="tal_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="pat_id" Type="Int32" />
+          <Property Name="ser_id" Type="Int32" />
+          <Property Name="tal_date" Type="DateTime" Precision="0" />
+          <Property Name="tal_time" Type="Time" Precision="7" />
+          <Property Name="doc_id" Type="Int32" />
+          <NavigationProperty Name="doctor" Relationship="Self.FK_talon_doctor" FromRole="talon" ToRole="doctor" />
+          <NavigationProperty Name="patient" Relationship="Self.FK_talon_patient" FromRole="talon" ToRole="patient" />
+          <NavigationProperty Name="service" Relationship="Self.FK_talon_service" FromRole="talon" ToRole="service" />
+        </EntityType>
+        <EntityType Name="timetable">
+          <Key>
+            <PropertyRef Name="tim_id" />
+          </Key>
+          <Property Name="tim_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="day_id" Type="Int32" />
+          <Property Name="doc_id" Type="Int32" />
+          <Property Name="beg_time" Type="Time" Precision="7" />
+          <Property Name="end_time" Type="Time" Precision="7" />
+          <NavigationProperty Name="day" Relationship="Self.FK_timetable_day" FromRole="timetable" ToRole="day" />
+          <NavigationProperty Name="doctor" Relationship="Self.FK_timetable_doctor" FromRole="timetable" ToRole="doctor" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_timetable_day">
+          <End Role="day" Type="Self.day" Multiplicity="0..1" />
+          <End Role="timetable" Type="Self.timetable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="day">
+              <PropertyRef Name="day_id" />
+            </Principal>
+            <Dependent Role="timetable">
+              <PropertyRef Name="day_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_doctor_position">
+          <End Role="position" Type="Self.position" Multiplicity="0..1" />
+          <End Role="doctor" Type="Self.doctor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="position">
+              <PropertyRef Name="pos_id" />
+            </Principal>
+            <Dependent Role="doctor">
+              <PropertyRef Name="pos_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_talon_doctor">
+          <End Role="doctor" Type="Self.doctor" Multiplicity="0..1" />
+          <End Role="talon" Type="Self.talon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="doctor">
+              <PropertyRef Name="doc_id" />
+            </Principal>
+            <Dependent Role="talon">
+              <PropertyRef Name="doc_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_timetable_doctor">
+          <End Role="doctor" Type="Self.doctor" Multiplicity="0..1" />
+          <End Role="timetable" Type="Self.timetable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="doctor">
+              <PropertyRef Name="doc_id" />
+            </Principal>
+            <Dependent Role="timetable">
+              <PropertyRef Name="doc_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_talon_patient">
+          <End Role="patient" Type="Self.patient" Multiplicity="0..1" />
+          <End Role="talon" Type="Self.talon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="patient">
+              <PropertyRef Name="pat_id" />
+            </Principal>
+            <Dependent Role="talon">
+              <PropertyRef Name="pat_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_talon_service">
+          <End Role="service" Type="Self.service" Multiplicity="0..1" />
+          <End Role="talon" Type="Self.talon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="service">
+              <PropertyRef Name="ser_id" />
+            </Principal>
+            <Dependent Role="talon">
+              <PropertyRef Name="ser_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="dental_dbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="day" EntityType="Self.day" />
+          <EntitySet Name="doctor" EntityType="Self.doctor" />
+          <EntitySet Name="patient" EntityType="Self.patient" />
+          <EntitySet Name="position" EntityType="Self.position" />
+          <EntitySet Name="service" EntityType="Self.service" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="talon" EntityType="Self.talon" />
+          <EntitySet Name="timetable" EntityType="Self.timetable" />
+          <EntitySet Name="user" EntityType="Self.user" />
+          <AssociationSet Name="FK_timetable_day" Association="Self.FK_timetable_day">
+            <End Role="day" EntitySet="day" />
+            <End Role="timetable" EntitySet="timetable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_doctor_position" Association="Self.FK_doctor_position">
+            <End Role="position" EntitySet="position" />
+            <End Role="doctor" EntitySet="doctor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_talon_doctor" Association="Self.FK_talon_doctor">
+            <End Role="doctor" EntitySet="doctor" />
+            <End Role="talon" EntitySet="talon" />
+          </AssociationSet>
+          <AssociationSet Name="FK_timetable_doctor" Association="Self.FK_timetable_doctor">
+            <End Role="doctor" EntitySet="doctor" />
+            <End Role="timetable" EntitySet="timetable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_talon_patient" Association="Self.FK_talon_patient">
+            <End Role="patient" EntitySet="patient" />
+            <End Role="talon" EntitySet="talon" />
+          </AssociationSet>
+          <AssociationSet Name="FK_talon_service" Association="Self.FK_talon_service">
+            <End Role="service" EntitySet="service" />
+            <End Role="talon" EntitySet="talon" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="dental_dbModelStoreContainer" CdmEntityContainer="dental_dbEntities">
+          <EntitySetMapping Name="day">
+            <EntityTypeMapping TypeName="dental_dbModel.day">
+              <MappingFragment StoreEntitySet="day">
+                <ScalarProperty Name="day_id" ColumnName="day_id" />
+                <ScalarProperty Name="title" ColumnName="title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="doctor">
+            <EntityTypeMapping TypeName="dental_dbModel.doctor">
+              <MappingFragment StoreEntitySet="doctor">
+                <ScalarProperty Name="doc_id" ColumnName="doc_id" />
+                <ScalarProperty Name="surname" ColumnName="surname" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="patronymic" ColumnName="patronymic" />
+                <ScalarProperty Name="dob" ColumnName="dob" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="mail" ColumnName="mail" />
+                <ScalarProperty Name="reg_date" ColumnName="reg_date" />
+                <ScalarProperty Name="pos_id" ColumnName="pos_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="patient">
+            <EntityTypeMapping TypeName="dental_dbModel.patient">
+              <MappingFragment StoreEntitySet="patient">
+                <ScalarProperty Name="pat_id" ColumnName="pat_id" />
+                <ScalarProperty Name="surname" ColumnName="surname" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="patronymic" ColumnName="patronymic" />
+                <ScalarProperty Name="dob" ColumnName="dob" />
+                <ScalarProperty Name="snills" ColumnName="snills" />
+                <ScalarProperty Name="oms" ColumnName="oms" />
+                <ScalarProperty Name="passport" ColumnName="passport" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="position">
+            <EntityTypeMapping TypeName="dental_dbModel.position">
+              <MappingFragment StoreEntitySet="position">
+                <ScalarProperty Name="pos_id" ColumnName="pos_id" />
+                <ScalarProperty Name="title" ColumnName="title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="service">
+            <EntityTypeMapping TypeName="dental_dbModel.service">
+              <MappingFragment StoreEntitySet="service">
+                <ScalarProperty Name="ser_id" ColumnName="ser_id" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="time" ColumnName="time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="dental_dbModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="talon">
+            <EntityTypeMapping TypeName="dental_dbModel.talon">
+              <MappingFragment StoreEntitySet="talon">
+                <ScalarProperty Name="tal_id" ColumnName="tal_id" />
+                <ScalarProperty Name="pat_id" ColumnName="pat_id" />
+                <ScalarProperty Name="ser_id" ColumnName="ser_id" />
+                <ScalarProperty Name="tal_date" ColumnName="tal_date" />
+                <ScalarProperty Name="tal_time" ColumnName="tal_time" />
+                <ScalarProperty Name="doc_id" ColumnName="doc_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="timetable">
+            <EntityTypeMapping TypeName="dental_dbModel.timetable">
+              <MappingFragment StoreEntitySet="timetable">
+                <ScalarProperty Name="tim_id" ColumnName="tim_id" />
+                <ScalarProperty Name="day_id" ColumnName="day_id" />
+                <ScalarProperty Name="doc_id" ColumnName="doc_id" />
+                <ScalarProperty Name="beg_time" ColumnName="beg_time" />
+                <ScalarProperty Name="end_time" ColumnName="end_time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="user">
+            <EntityTypeMapping TypeName="dental_dbModel.user">
+              <MappingFragment StoreEntitySet="user">
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="password" ColumnName="password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

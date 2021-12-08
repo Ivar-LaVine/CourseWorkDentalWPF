@@ -1,0 +1,200 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="dental_dbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="day">
+    <Key>
+      <PropertyRef Name="day_id" />
+    </Key>
+    <Property Name="day_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="title" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="doctor">
+    <Key>
+      <PropertyRef Name="doc_id" />
+    </Key>
+    <Property Name="doc_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="surname" Type="varchar" MaxLength="50" />
+    <Property Name="name" Type="varchar" MaxLength="50" />
+    <Property Name="patronymic" Type="varchar" MaxLength="50" />
+    <Property Name="dob" Type="date" />
+    <Property Name="phone" Type="nvarchar" MaxLength="20" />
+    <Property Name="mail" Type="nvarchar" MaxLength="50" />
+    <Property Name="reg_date" Type="date" />
+    <Property Name="pos_id" Type="int" />
+  </EntityType>
+  <EntityType Name="patient">
+    <Key>
+      <PropertyRef Name="pat_id" />
+    </Key>
+    <Property Name="pat_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="surname" Type="nvarchar" MaxLength="50" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" />
+    <Property Name="patronymic" Type="nvarchar" MaxLength="50" />
+    <Property Name="dob" Type="date" />
+    <Property Name="snills" Type="nvarchar" MaxLength="50" />
+    <Property Name="oms" Type="nvarchar" MaxLength="50" />
+    <Property Name="passport" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="position">
+    <Key>
+      <PropertyRef Name="pos_id" />
+    </Key>
+    <Property Name="pos_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="title" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="service">
+    <Key>
+      <PropertyRef Name="ser_id" />
+    </Key>
+    <Property Name="ser_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="title" Type="nvarchar" MaxLength="50" />
+    <Property Name="price" Type="money" />
+    <Property Name="description" Type="nvarchar" MaxLength="500" />
+    <Property Name="time" Type="time" Precision="7" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="talon">
+    <Key>
+      <PropertyRef Name="tal_id" />
+    </Key>
+    <Property Name="tal_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="pat_id" Type="int" />
+    <Property Name="ser_id" Type="int" />
+    <Property Name="tal_date" Type="date" />
+    <Property Name="tal_time" Type="time" Precision="7" />
+    <Property Name="doc_id" Type="int" />
+  </EntityType>
+  <EntityType Name="timetable">
+    <Key>
+      <PropertyRef Name="tim_id" />
+    </Key>
+    <Property Name="tim_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="day_id" Type="int" />
+    <Property Name="doc_id" Type="int" />
+    <Property Name="beg_time" Type="time" Precision="7" />
+    <Property Name="end_time" Type="time" Precision="7" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="user_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="login" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="password" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_doctor_position">
+    <End Role="position" Type="Self.position" Multiplicity="0..1" />
+    <End Role="doctor" Type="Self.doctor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="position">
+        <PropertyRef Name="pos_id" />
+      </Principal>
+      <Dependent Role="doctor">
+        <PropertyRef Name="pos_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_talon_doctor">
+    <End Role="doctor" Type="Self.doctor" Multiplicity="0..1" />
+    <End Role="talon" Type="Self.talon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="doctor">
+        <PropertyRef Name="doc_id" />
+      </Principal>
+      <Dependent Role="talon">
+        <PropertyRef Name="doc_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_talon_patient">
+    <End Role="patient" Type="Self.patient" Multiplicity="0..1" />
+    <End Role="talon" Type="Self.talon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="patient">
+        <PropertyRef Name="pat_id" />
+      </Principal>
+      <Dependent Role="talon">
+        <PropertyRef Name="pat_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_talon_service">
+    <End Role="service" Type="Self.service" Multiplicity="0..1" />
+    <End Role="talon" Type="Self.talon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="service">
+        <PropertyRef Name="ser_id" />
+      </Principal>
+      <Dependent Role="talon">
+        <PropertyRef Name="ser_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_timetable_day">
+    <End Role="day" Type="Self.day" Multiplicity="0..1" />
+    <End Role="timetable" Type="Self.timetable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="day">
+        <PropertyRef Name="day_id" />
+      </Principal>
+      <Dependent Role="timetable">
+        <PropertyRef Name="day_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_timetable_doctor">
+    <End Role="doctor" Type="Self.doctor" Multiplicity="0..1" />
+    <End Role="timetable" Type="Self.timetable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="doctor">
+        <PropertyRef Name="doc_id" />
+      </Principal>
+      <Dependent Role="timetable">
+        <PropertyRef Name="doc_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="dental_dbModelStoreContainer">
+    <EntitySet Name="day" EntityType="Self.day" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="doctor" EntityType="Self.doctor" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="patient" EntityType="Self.patient" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="position" EntityType="Self.position" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="service" EntityType="Self.service" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="talon" EntityType="Self.talon" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="timetable" EntityType="Self.timetable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="user" EntityType="Self.user" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_doctor_position" Association="Self.FK_doctor_position">
+      <End Role="position" EntitySet="position" />
+      <End Role="doctor" EntitySet="doctor" />
+    </AssociationSet>
+    <AssociationSet Name="FK_talon_doctor" Association="Self.FK_talon_doctor">
+      <End Role="doctor" EntitySet="doctor" />
+      <End Role="talon" EntitySet="talon" />
+    </AssociationSet>
+    <AssociationSet Name="FK_talon_patient" Association="Self.FK_talon_patient">
+      <End Role="patient" EntitySet="patient" />
+      <End Role="talon" EntitySet="talon" />
+    </AssociationSet>
+    <AssociationSet Name="FK_talon_service" Association="Self.FK_talon_service">
+      <End Role="service" EntitySet="service" />
+      <End Role="talon" EntitySet="talon" />
+    </AssociationSet>
+    <AssociationSet Name="FK_timetable_day" Association="Self.FK_timetable_day">
+      <End Role="day" EntitySet="day" />
+      <End Role="timetable" EntitySet="timetable" />
+    </AssociationSet>
+    <AssociationSet Name="FK_timetable_doctor" Association="Self.FK_timetable_doctor">
+      <End Role="doctor" EntitySet="doctor" />
+      <End Role="timetable" EntitySet="timetable" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
