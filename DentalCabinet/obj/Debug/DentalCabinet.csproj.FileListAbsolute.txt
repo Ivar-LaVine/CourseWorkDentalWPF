@@ -58,6 +58,19 @@ D:\4ИС1\Plotnikov\Data Base\Practice\DentalCabinet\DentalCabinet\obj\Debug\Pag
 D:\4ИС1\Plotnikov\Data Base\Practice\DentalCabinet\DentalCabinet\obj\Debug\Pages\ServicesPage.baml
 D:\4ИС1\Plotnikov\Data Base\Practice\DentalCabinet\DentalCabinet\obj\Debug\DlgPages\DoctorsDlgPage.g.cs
 D:\4ИС1\Plotnikov\Data Base\Practice\DentalCabinet\DentalCabinet\obj\Debug\DlgPages\DoctorsDlgPage.baml
+D:\4ИС1\Плотников\DentalWPF-master\DentalWPF-master\DentalCabinet\obj\Debug\AuthorizationWindow.g.cs
+D:\4ИС1\Плотников\DentalWPF-master\DentalWPF-master\DentalCabinet\obj\Debug\DlgPages\DoctorsDlgPage.g.cs
+D:\4ИС1\Плотников\DentalWPF-master\DentalWPF-master\DentalCabinet\obj\Debug\MainWindow.g.cs
+D:\4ИС1\Плотников\DentalWPF-master\DentalWPF-master\DentalCabinet\obj\Debug\Pages\DoctorsPage.g.cs
+D:\4ИС1\Плотников\DentalWPF-master\DentalWPF-master\DentalCabinet\obj\Debug\Pages\PatientsPage.g.cs
+D:\4ИС1\Плотников\DentalWPF-master\DentalWPF-master\DentalCabinet\obj\Debug\Pages\PositionsPage.g.cs
+D:\4ИС1\Плотников\DentalWPF-master\DentalWPF-master\DentalCabinet\obj\Debug\Pages\ServicesPage.g.cs
+D:\4ИС1\Плотников\DentalWPF-master\DentalWPF-master\DentalCabinet\obj\Debug\Pages\PatientsTalonsPage.g.cs
+D:\4ИС1\Плотников\DentalWPF-master\DentalWPF-master\DentalCabinet\obj\Debug\RegistrationWindow.g.cs
+D:\4ИС1\Плотников\DentalWPF-master\DentalWPF-master\DentalCabinet\obj\Debug\App.g.cs
+D:\4ИС1\Плотников\DentalWPF-master\DentalWPF-master\DentalCabinet\obj\Debug\DentalCabinet_Content.g.cs
+D:\4ИС1\Плотников\DentalWPF-master\DentalWPF-master\DentalCabinet\obj\Debug\DentalCabinet_MarkupCompile.cache
+D:\4ИС1\Плотников\DentalWPF-master\DentalWPF-master\DentalCabinet\obj\Debug\DentalCabinet_MarkupCompile.lref
 D:\4ИС1\Плотников\DentalWPF-master\DentalWPF-master\DentalCabinet\bin\Debug\DentalCabinet.exe.config
 D:\4ИС1\Плотников\DentalWPF-master\DentalWPF-master\DentalCabinet\bin\Debug\DentalCabinet.exe
 D:\4ИС1\Плотников\DentalWPF-master\DentalWPF-master\DentalCabinet\bin\Debug\DentalCabinet.pdb
@@ -65,23 +78,16 @@ D:\4ИС1\Плотников\DentalWPF-master\DentalWPF-master\DentalCabinet\bin
 D:\4ИС1\Плотников\DentalWPF-master\DentalWPF-master\DentalCabinet\bin\Debug\EntityFramework.SqlServer.dll
 D:\4ИС1\Плотников\DentalWPF-master\DentalWPF-master\DentalCabinet\bin\Debug\EntityFramework.xml
 D:\4ИС1\Плотников\DentalWPF-master\DentalWPF-master\DentalCabinet\bin\Debug\EntityFramework.SqlServer.xml
-D:\4ИС1\Плотников\DentalWPF-master\DentalWPF-master\DentalCabinet\obj\Debug\DlgPages\DoctorsDlgPage.g.cs
-D:\4ИС1\Плотников\DentalWPF-master\DentalWPF-master\DentalCabinet\obj\Debug\MainWindow.g.cs
-D:\4ИС1\Плотников\DentalWPF-master\DentalWPF-master\DentalCabinet\obj\Debug\Pages\DoctorsPage.g.cs
-D:\4ИС1\Плотников\DentalWPF-master\DentalWPF-master\DentalCabinet\obj\Debug\Pages\PatientsPage.g.cs
-D:\4ИС1\Плотников\DentalWPF-master\DentalWPF-master\DentalCabinet\obj\Debug\Pages\PositionsPage.g.cs
-D:\4ИС1\Плотников\DentalWPF-master\DentalWPF-master\DentalCabinet\obj\Debug\Pages\ServicesPage.g.cs
-D:\4ИС1\Плотников\DentalWPF-master\DentalWPF-master\DentalCabinet\obj\Debug\App.g.cs
-D:\4ИС1\Плотников\DentalWPF-master\DentalWPF-master\DentalCabinet\obj\Debug\DentalCabinet_Content.g.cs
-D:\4ИС1\Плотников\DentalWPF-master\DentalWPF-master\DentalCabinet\obj\Debug\DentalCabinet_MarkupCompile.cache
-D:\4ИС1\Плотников\DentalWPF-master\DentalWPF-master\DentalCabinet\obj\Debug\DentalCabinet_MarkupCompile.lref
 D:\4ИС1\Плотников\DentalWPF-master\DentalWPF-master\DentalCabinet\obj\Debug\App.baml
+D:\4ИС1\Плотников\DentalWPF-master\DentalWPF-master\DentalCabinet\obj\Debug\AuthorizationWindow.baml
 D:\4ИС1\Плотников\DentalWPF-master\DentalWPF-master\DentalCabinet\obj\Debug\DlgPages\DoctorsDlgPage.baml
 D:\4ИС1\Плотников\DentalWPF-master\DentalWPF-master\DentalCabinet\obj\Debug\MainWindow.baml
 D:\4ИС1\Плотников\DentalWPF-master\DentalWPF-master\DentalCabinet\obj\Debug\Pages\DoctorsPage.baml
 D:\4ИС1\Плотников\DentalWPF-master\DentalWPF-master\DentalCabinet\obj\Debug\Pages\PatientsPage.baml
 D:\4ИС1\Плотников\DentalWPF-master\DentalWPF-master\DentalCabinet\obj\Debug\Pages\PositionsPage.baml
 D:\4ИС1\Плотников\DentalWPF-master\DentalWPF-master\DentalCabinet\obj\Debug\Pages\ServicesPage.baml
+D:\4ИС1\Плотников\DentalWPF-master\DentalWPF-master\DentalCabinet\obj\Debug\Pages\PatientsTalonsPage.baml
+D:\4ИС1\Плотников\DentalWPF-master\DentalWPF-master\DentalCabinet\obj\Debug\RegistrationWindow.baml
 D:\4ИС1\Плотников\DentalWPF-master\DentalWPF-master\DentalCabinet\obj\Debug\DentalCabinet.g.resources
 D:\4ИС1\Плотников\DentalWPF-master\DentalWPF-master\DentalCabinet\obj\Debug\DentalCabinet.Properties.Resources.resources
 D:\4ИС1\Плотников\DentalWPF-master\DentalWPF-master\DentalCabinet\obj\Debug\DentalCabinet.csproj.GenerateResource.cache
@@ -89,10 +95,4 @@ D:\4ИС1\Плотников\DentalWPF-master\DentalWPF-master\DentalCabinet\obj
 D:\4ИС1\Плотников\DentalWPF-master\DentalWPF-master\DentalCabinet\obj\Debug\DentalCabinet.csproj.CopyComplete
 D:\4ИС1\Плотников\DentalWPF-master\DentalWPF-master\DentalCabinet\obj\Debug\DentalCabinet.exe
 D:\4ИС1\Плотников\DentalWPF-master\DentalWPF-master\DentalCabinet\obj\Debug\DentalCabinet.pdb
-D:\4ИС1\Плотников\DentalWPF-master\DentalWPF-master\DentalCabinet\obj\Debug\Pages\PatientsTalonsPage.g.cs
-D:\4ИС1\Плотников\DentalWPF-master\DentalWPF-master\DentalCabinet\obj\Debug\Pages\PatientsTalonsPage.baml
 D:\4ИС1\Плотников\DentalWPF-master\DentalWPF-master\DentalCabinet\obj\Debug\DentalCabinet.csprojAssemblyReference.cache
-D:\4ИС1\Плотников\DentalWPF-master\DentalWPF-master\DentalCabinet\obj\Debug\AuthorizationWindow.g.cs
-D:\4ИС1\Плотников\DentalWPF-master\DentalWPF-master\DentalCabinet\obj\Debug\AuthorizationWindow.baml
-D:\4ИС1\Плотников\DentalWPF-master\DentalWPF-master\DentalCabinet\obj\Debug\RegistrationWindow.g.cs
-D:\4ИС1\Плотников\DentalWPF-master\DentalWPF-master\DentalCabinet\obj\Debug\RegistrationWindow.baml

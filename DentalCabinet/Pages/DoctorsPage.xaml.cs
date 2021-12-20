@@ -27,9 +27,19 @@ namespace DentalCabinet.Pages
             DoctorsDataGrid.ItemsSource = Core.CoreDB.dental_DbEntities.doctor.ToList();
         }
 
+        private Data.doctor doctor;
+        public Data.doctor Doctor
+        {
+            get => doctor;
+            set
+            {
+                doctor = value;
+            }
+        }
+        // Mode 1 - Add; 2 - Edit; 3 - Delete; 4 - New by selected
         private void AddDoctorButton_Click(object sender, RoutedEventArgs e)
         {
-            Page page = new DlgPages.DoctorsDlgPage();
+            Page page = new DlgPages.DoctorsDlgPage(this, new Data.doctor(), 1);
             DoctorsFrame.Navigate(page);
             DoctorsFrameColumnDefinition.Width = new GridLength(300, GridUnitType.Pixel);
             DoctorsFrameColumnDefinition.MinWidth = 300;
@@ -37,10 +47,25 @@ namespace DentalCabinet.Pages
 
         private void EditDoctorButton_Click(object sender, RoutedEventArgs e)
         {
-            Page page = new DlgPages.DoctorsDlgPage();
-            DoctorsFrame.Navigate(page);
+            //Page page = new DlgPages.DoctorsDlgPage(this);
+            //DoctorsFrame.Navigate(page);
             DoctorsFrameColumnDefinition.Width = new GridLength(300, GridUnitType.Pixel);
             DoctorsFrameColumnDefinition.MinWidth = 300;
+        }
+
+        private void DeleteDoctorButton_Click(object sender, RoutedEventArgs e)
+        {
+            Page page = new DlgPages.DoctorsDlgPage(this, new Data.doctor(), 3);
+        }
+
+        public void UpdateGrid(Data.doctor doctor)
+        {
+            if ((doctor == null) && (DoctorsDataGrid.ItemsSource != null))
+            {
+                doctor = (Data.doctor)DoctorsDataGrid.SelectedItem;
+            }
+            DoctorsDataGrid.ItemsSource = Core.CoreDB.dental_DbEntities.doctor.ToList();
+            DoctorsDataGrid.SelectedItem = doctor;
         }
     }
 }

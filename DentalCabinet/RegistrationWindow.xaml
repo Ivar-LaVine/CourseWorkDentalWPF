@@ -5,30 +5,46 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DentalCabinet"
         mc:Ignorable="d"
-        Title="Регистрация пользователя" Height="372" Width="600"
+        Title="Регистрация пользователя" Height="200" Width="500"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <Style TargetType="{x:Type Button}" x:Key="ImageButtonStyle">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <ContentPresenter/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
     <Grid>
         <DockPanel>
             <StackPanel DockPanel.Dock="Left">
                 <Image DockPanel.Dock="Left" Width="60" Height="60" Margin="10,20" Source="dental_logo.png"/>
             </StackPanel>
             <StackPanel Margin="10,15,20,0">
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="Логин" Width="90"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                    <Label Content="Логин" Width="90" VerticalAlignment="Center"/>
                     <TextBox x:Name="LoginTextBox" TabIndex="0"/>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="Пароль" Width="90"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                    <Label Content="Пароль" Width="90" VerticalAlignment="Center"/>
                     <Grid>
-                        <PasswordBox x:Name="PasswordPasswordBox" TabIndex="2"/>
+                        <PasswordBox x:Name="PasswordPasswordBox" TabIndex="2" Width="208"/>
                         <TextBox x:Name="PasswordTextBox" Width="0" Visibility="Hidden" TabIndex="1"/>
                     </Grid>
+                    <Grid>
+                        <Button Style="{StaticResource ImageButtonStyle}" Click="PasswordButton_Click">
+                            <Image Cursor="Hand" Source="show_password.png" Width="40" VerticalAlignment="Center" Margin="0,0,0,5" KeyboardNavigation.TabIndex="2"/>
+                        </Button>
+                    </Grid>
+                    
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                    <Button x:Name="PasswordButton" DockPanel.Dock="Right" Content="Показать" Width="75" Margin="0,0,10,0" TabIndex="1" Click="PasswordButton_Click"/>
-                    <Button x:Name="OkButton" Content="ОК" Width="75" DockPanel.Dock="Right" Margin="0,0,10,0" TabIndex="3" IsDefault="True" Click="OkButton_Click"/>
-                    <Button x:Name="CancelButton" Content="Отмена" Width="75" DockPanel.Dock="Right" Margin="0,0,10,0" TabIndex="4" IsCancel="True" Click="CancelButton_Click"/>
+                    <Button x:Name="OkButton" Content="ОК" Width="75" DockPanel.Dock="Right" Margin="0,0,5,0" TabIndex="3" IsDefault="True" Click="OkButton_Click"/>
+                    <Button x:Name="CancelButton" Content="Отмена" Width="75" DockPanel.Dock="Right" Margin="0,0,5,0" TabIndex="4" IsCancel="True" Click="CancelButton_Click"/>
                 </StackPanel>
             </StackPanel>
         </DockPanel>

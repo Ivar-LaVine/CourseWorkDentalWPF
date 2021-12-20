@@ -24,7 +24,7 @@
                 <Button x:Name="AddDoctorButton" Content="Новая" Click="AddDoctorButton_Click"/>
                 <Button x:Name="CopyDoctorButton" Content="Копировать"/>
                 <Button x:Name="EditDoctorButton" Content="Изменить" Click="EditDoctorButton_Click"/>
-                <Button x:Name="DeleteDoctorButton" Content="Удалить"/>
+                <Button x:Name="DeleteDoctorButton" Content="Удалить" Click="DeleteDoctorButton_Click"/>
                 <TextBox Width="400"/>
             </StackPanel>
             <DataGrid x:Name="DoctorsDataGrid">
@@ -40,7 +40,7 @@
                 </DataGrid.Columns>
             </DataGrid>
         </DockPanel>
-        <GridSplitter Grid.Column="1" Grid.Row="2" Width="3" HorizontalAlignment="Stretch" Visibility="Hidden"/>
-        <Frame NavigationUIVisibility="Hidden" Grid.Column="2" Grid.Row="2" x:Name="DoctorsFrame"/>
+        <GridSplitter Grid.Column="1" Grid.Row="1" Width="3" HorizontalAlignment="Stretch" Visibility="Hidden"/>
+        <Frame NavigationUIVisibility="Hidden" Grid.Column="2" Grid.Row="1" x:Name="DoctorsFrame"/>
     </Grid>
 </Page>

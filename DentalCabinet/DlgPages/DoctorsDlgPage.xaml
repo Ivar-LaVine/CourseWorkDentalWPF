@@ -10,26 +10,26 @@
 
     <Grid>
         <ScrollViewer>
-            <StackPanel>
+            <StackPanel Margin="0, 50, 0, 0">
                 <Label Content="Фамилия"/>
-                <TextBox x:Name="SurnameTextBox" Text="123"/>
+                <TextBox x:Name="SurnameTextBox"/>
                 <Label Content="Имя"/>
-                <TextBox/>
+                <TextBox x:Name="NameTextBox"/>
                 <Label Content="Отчество"/>
-                <TextBox/>
+                <TextBox x:Name="PatronymicTextBox"/>
                 <Label Content="Дата рождения"/>
-                <TextBox x:Name="AgeTextBox"/>
+                <TextBox x:Name="DOBTextBox"/>
                 <Label Content="Телефон"/>
-                <TextBox/>
+                <TextBox x:Name="PhoneTextBox"/>
                 <Label Content="Почта"/>
-                <TextBox/>
+                <TextBox x:Name="MailTextBox"/>
                 <Label Content="Дата регистрации"/>
-                <TextBox/>
-                <Label Content="Телефон"/>
-                <TextBox/>
+                <TextBox x:Name="RegDateTextBox"/>
+                <Label Content="Должность"/>
+                <ComboBox x:Name="PositionComboBox" DisplayMemberPath="title" Width="250" Height="30" FontSize="16" Margin="0,10,0,10"/>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                    <Button Content="ОК" Width="120"/>
-                    <Button Content="Отмена" Width="120"/>
+                    <Button Content="ОК" Width="120" Click="OkButton_Click"/>
+                    <Button Content="Отмена" Width="120" Click="CancelButton_Click"/>
                 </StackPanel>
             </StackPanel>
         </ScrollViewer>
